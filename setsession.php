@@ -1,11 +1,19 @@
 <?php
 $context = json_decode($_POST['context'] ?: "[]") ?: [];
+
+if ((isset($_POST['model'])) && (!empty($_POST['model']))) {
+    $_SESSION['model'] = $_POST['model'];
+}
+
 $postData = [
-    "model" => "gpt-3.5-turbo",
+    "model" => $_SESSION['model'],//"gpt-3.5-turbo",
     "temperature" => 0,
     "stream" => true,
     "messages" => [],
 ];
+
+
+
 if (!empty($context)) {
     $context = array_slice($context, -5);
     foreach ($context as $message) {
@@ -20,4 +28,7 @@ $_SESSION['data'] = $postData;
 if ((isset($_POST['key'])) && (!empty($_POST['key']))) {
     $_SESSION['key'] = $_POST['key'];
 }
+
+
+
 echo '{"success":true}';
