@@ -1,4 +1,4 @@
-﻿﻿<?php
+﻿<?php
 $type = "个人";
 //  if (substr($_SERVER["REMOTE_ADDR"],0,9)!="127.0.0.1"){
 //    if (strpos($_SERVER["HTTP_USER_AGENT"],"MicroMessenger")){
@@ -21,7 +21,12 @@ $type = "个人";
 //  } else {
 //    $type = "内网";
 //  }
+
+ // 设置密码 
+require_once('MkEncrypt.php');
+MkEncrypt('your code');     //page visit code
 ?>
+
 <html lang="zh-CN">
 
 <head>
@@ -33,7 +38,11 @@ $type = "个人";
     <link rel="stylesheet" href="css/wenda.css?v1.1">
     <link rel="stylesheet" href="css/hightlight.css">
 </head>
-
+<script>
+function getmodeltype(){
+    $('#model-type').val();
+}
+</script>
 <body>
     <div class="layout-wrap">
         <header class="layout-header">
@@ -42,7 +51,7 @@ $type = "个人";
                     <h2 class="logo"><a class="links" id="clean" title="清空对话信息"><span class="logo-title">清空对话信息</span></a></h2>
                 </div>
                 <div class="header-logo">
-                    <h2 class="logo"><a class="links" href="https://github.com/ywtyltd/test"><span class="logo-title">获取源码</span></a></h2>
+                      
                 </div>
             </div>
         </header>
@@ -56,12 +65,21 @@ $type = "个人";
                                 <span style="text-align: center;color:#9ca2a8">&nbsp;&nbsp;API-KEY&nbsp;&nbsp;</span>
                                 <input type="password" id="key" style="border:1px solid grey;display:block;max-width:270px;width:calc(100% - 70px);" onload="this.focus();">
                             </div>
--->
+-->                         
                             <div class="input-group">
                                 <span style="text-align: center;color:#9ca2a8">&nbsp;&nbsp;连续对话：</span>
                                 <input type="checkbox" id="keep" checked="" style="min-width:220px;">
                                 <label for="keep"></label>
                             </div>
+
+                            <div class="input-group">
+                                  <span style="text-align: center;color:#9ca2a8">&nbsp;&nbsp;选择模型：</span>
+                                  <select id="model" onchange="getmodeltype()" style="width:calc(100% - 10px);max-width:280px;">       
+                                  <option value="gpt-3.5-turbo">gpt3.5</option>
+                                  <option value="gpt-4-1106-preview">gpt4</option>
+                                 </select>
+                            </div>
+
                             <div class="input-group">
                                 <span style="text-align: center;color:#9ca2a8">&nbsp;&nbsp;预设话术：</span>
                                 <select id="preset-text" onchange="insertPresetText()" style="width:calc(100% - 90px);max-width:280px;">
@@ -230,3 +248,5 @@ $type = "个人";
 </body>
 
 </html>
+
+
