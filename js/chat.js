@@ -73,10 +73,14 @@ function isMobile() {
     return false;
 }
 
+
+
 function insertPresetText() {
     $("#kw-target").val($('#preset-text').val());
     autoresize();
 }
+
+
 
 function initcode() {
     console['\x6c\x6f\x67']("\u672c\u7ad9\u4ee3\u7801\u4fee\u6539\u81ea\x68\x74\x74\x70\x3a\x2f\x2f\x67\x69\x74\x68\x75\x62\x2e\x63\x6f\x6d\x2f\x64\x69\x72\x6b\x31\x39\x38\x33\x2f\x63\x68\x61\x74\x67\x70\x74");
@@ -175,7 +179,7 @@ $(document).ready(function () {
             return;
         }
 
-        var loading = layer.msg('正在组织语言，请稍等片刻...', {
+        var loading = layer.msg('您选择的是'+$("#model").val()+',正在加载，请稍等片刻...', {
             icon: 16,
             shade: 0.4,
             time: false //取消自动关闭
@@ -315,6 +319,7 @@ $(document).ready(function () {
                 message: prompt,
                 context: (!($("#keep").length) || ($("#keep").prop("checked"))) ? JSON.stringify(contextarray) : '[]',
                 key: ($("#key").length) ? ($("#key").val()) : '',
+                model:($("#model").length) ? ($("#model").val()) : 'gpt-3.5-turbo',
             },
             dataType: "json",
             success: function (results) {
