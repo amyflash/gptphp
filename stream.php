@@ -3,10 +3,10 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: text/event-stream");
 header("X-Accel-Buffering: no");
 session_start();
-$postData = $_SESSION['data'];
+$postData = $_SESSION['data'];  
 $_SESSION['response'] = "";
 $ch = curl_init();
-$OPENAI_API_KEY = "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";
+$OPENAI_API_KEY = "your key";
 if (isset($_SESSION['key'])) {
     $OPENAI_API_KEY = $_SESSION['key'];
 }
